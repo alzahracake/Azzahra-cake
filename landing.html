@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ-ZAHRA - Bakery & Pastry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        .welcome-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #d0d0d0;
+            margin-bottom: 20px;
+        }
+
+        .cake-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .cake-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+            border-radius: 50% 30% 50% 30%;
+            z-index: 1;
+        }
+
+        .cake-plate {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cake {
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #8B4513;
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 50%, #ffff00 100%);
+            border-radius: 50%;
+        }
+
+        .sparkles {
+            position: absolute;
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+
+        .sparkle-1 { top: 20px; right: 40px; }
+        .sparkle-2 { bottom: 30px; left: 30px; }
+        .sparkle-3 { top: 40px; left: 20px; font-size: 1rem; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Recommendations Section */
+        .recommendations {
+            padding: 80px 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .food-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .food-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bread-visual {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 60px;
+            background: linear-gradient(135deg, #deb887 0%, #cd853f 100%);
+            border-radius: 20px 20px 5px 5px;
+        }
+
+        .bread-visual::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10%;
+            width: 15px;
+            height: 15px;
+            background: #8b4513;
+            border-radius: 50%;
+            box-shadow: 25px 0 #8b4513, 50px 0 #8b4513, 12px 15px #8b4513, 37px 15px #8b4513;
+        }
+
+        .food-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .food-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-shape {
+            flex: 1;
+            height: 400px;
+            background: linear-gradient(135deg, #4a4a4a 0%, #2d2d2d 100%);
+            border-radius: 50% 20% 50% 20%;
+            position: relative;
+        }
+
+        .about-shape::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+            border-radius: 50% 20% 50% 20%;
+        }
+
+        .about-text {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .order-btn {
+            display: block;
+            width: 200px;
+            margin: 40px auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4a4a4a 0%, #2d2d2d 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Social Media Section */
+        .social-media {
+            padding: 60px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .tiktok { background: #000; }
+        .facebook { background: #1877f2; }
+        .whatsapp { background: #25d366; }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* Decorative Icons */
+        .bg-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            color: #ddd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .brand-title {
+                font-size: 2rem;
+            }
+
+            .food-grid,
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .social-icons {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="grid-pattern"></div>
+        <div class="header-content">
+            <div class="welcome-section">
+                <h1 class="brand-title">AZ-ZAHRA</h1>
+                <h2 class="welcome-title">Selamat Datang</h2>
+                <p class="welcome-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+            <div class="cake-container">
+                <div class="cake-bg"></div>
+                <div class="cake-plate">
+                    <div class="cake">ALDY RC</div>
+                </div>
+                <div class="sparkles sparkle-1">✨</div>
+                <div class="sparkles sparkle-2">✨</div>
+                <div class="sparkles sparkle-3">✨</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Recommendations Section -->
+    <section class="recommendations">
+        <div class="bg-icons">
+            <div class="bg-icon" style="top: 10%; left: 5%;">🍰</div>
+            <div class="bg-icon" style="top: 20%; right: 10%;">🧁</div>
+            <div class="bg-icon" style="bottom: 30%; left: 15%;">🍞</div>
+            <div class="bg-icon" style="bottom: 10%; right: 20%;">🥐</div>
+            <div class="bg-icon" style="top: 50%; left: 8%;">🍪</div>
+            <div class="bg-icon" style="top: 70%; right: 5%;">🎂</div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Rekomendasi</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <div class="about-shape"></div>
+                <div class="about-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu">
+        <div class="container">
+            <h2 class="section-title">Menu</h2>
+            <div class="menu-grid">
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <div class="bread-visual"></div>
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti</h3>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="order-btn">Pesan Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media">
+        <div class="container">
+            <h2 class="section-title">Media Sosial</h2>
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <span>IG</span>
+                </a>
+                <a href="#" class="social-icon tiktok">
+                    <span>TT</span>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <span>FB</span>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                    <span>WA</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">footer iki diisi opo biasa e</p>
+        </div>
+    </footer>
+</body>
+</html>
