@@ -48,15 +48,13 @@
         .cake-section {
             position: relative;
             width: 100%;
-            height: 700px;
+            height: 650px;
             background-color: #fff;
             overflow: hidden;
         }
 
         .grid-background {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
@@ -68,56 +66,76 @@
 
         .curve {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 50%;
+            height: 40%;
             border-radius: 50%;
             z-index: 2;
         }
 
         .curve.peach {
-            top: 60px;
-            left: 100px;
+            top: 40%;
+            left: 10%;
             background-color: #f5d6aa;
-        }
-
-        .curve.white {
-            top: 200px;
-            right: 100px;
-            background-color: white;
         }
 
         .cake-plate {
             position: absolute;
-            top: 60px;
-            right: 150px;
-            width: 250px;
-            height: 250px;
+            top: 35%;
+            right: 10%;
+            width: 350px;
+            height: 350px;
             z-index: 3;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            overflow: hidden;
-            background-color: #222;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: transparent;
         }
 
-        .cake-plate img {
+        .plate-outer {
+            width: 100%;
+            height: 100%;
+            background: #222;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.4),
+                0 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .plate-inner {
+            width: 100%;
+            height: 100%;
+            background: #333;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 
+                inset 0 0 15px rgba(0, 0, 0, 0.5),
+                0 0 0 4px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .cake-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #444;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.3),
+                0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .welcome-text {
             position: absolute;
-            top: 80px;
-            left: 100px;
+            top: 40%;
+            left: 7%;
             z-index: 4;
-            max-width: 300px;
-            padding: 20px;
+            max-width: 700px;
+            padding: 60px 60px;
             color: #fff;
             background-color: #333;
-            border-radius: 50% 50% 50% 30%;
+            border-radius: 20% 50% 50% 30%;
         }
 
         /* Container */
@@ -138,8 +156,13 @@
             text-align: center;
             font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 50px;
+            margin: 0 auto 50px; /* 0 untuk top, auto untuk horizontal */
             color: #333;
+            border-bottom: 4px solid #333;
+            padding-bottom: 10px;
+            display: block; /* Ubah dari inline-block ke block */
+            width: fit-content; /* Lebar sesuai konten */
+            max-width: 90%; /* Agar tidak terlalu lebar di mobile */
         }
 
         .food-grid {
@@ -381,17 +404,17 @@
     <!-- Welcome Section -->
     <div class="cake-section">
         <div class="grid-background"></div>
-
         <div class="curve peach"></div>
-        <div class="curve white"></div>
-
-        <div class="cake-plate">
-            <img src="images/cake_welcome.jpg" alt="Kue Welcome">
-        </div>
-
+           <div class="cake-plate">
+                <div class="plate-outer">
+                    <div class="plate-inner">
+                        <img src="images/cake_welcome.jpg" alt="Kue Welcome" class="cake-img">
+                    </div>
+                </div>
+            </div>
         <div class="welcome-text">
-                <h2>Selamat Datang</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <h2>"Azzahra Cake - Where Every Slice Tells a Story!"</h2>
+                <p>Kue lezat dengan sentuhan istimewa, dibuat dari bahan premium dan dekorasi memukau. Temani momen bahagiamu dengan rasa yang tak terlupakan!</p>
             </div>
         </div>
 
