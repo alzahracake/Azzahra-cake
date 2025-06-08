@@ -180,26 +180,95 @@
         /* Recommendations Section */
         .recommendations {
             padding: 80px 0;
-            background: #fff;
+            background: #f3f3f3;
             position: relative;
+            overflow: hidden;
+        }
+
+        .floating-emojis {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.15;
+            animation: float 8s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+
+        .floating-cakes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-image: url('images/cake1.png'), url('images/cake2.png'), url('images/cake3.png');
+            background-repeat: no-repeat;
+            background-position: 10% 20%, 90% 40%, 30% 80%;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
             text-align: center;
             font-size: 2rem;
             font-weight: 600;
-            margin: 0 auto 50px; /* 0 untuk top, auto untuk horizontal */
+            margin: 0 auto 50px;
             color: #333;
-            border-bottom: 4px solid #333;
+            position: relative;
             padding-bottom: 10px;
-            display: block; /* Ubah dari inline-block ke block */
-            width: fit-content; /* Lebar sesuai konten */
-            max-width: 90%; /* Agar tidak terlalu lebar di mobile */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #e74c3c;
+            border-radius: 2px;
         }
 
         .food-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -208,44 +277,33 @@
             background: #fff;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
         }
 
         .food-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .food-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .bread-visual {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 60px;
-            background: linear-gradient(135deg, #deb887 0%, #cd853f 100%);
-            border-radius: 20px 20px 5px 5px;
+        .food-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .bread-visual::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 10%;
-            width: 15px;
-            height: 15px;
-            background: #8b4513;
-            border-radius: 50%;
-            box-shadow: 25px 0 #8b4513, 50px 0 #8b4513, 12px 15px #8b4513, 37px 15px #8b4513;
+        .food-card:hover .food-photo {
+            transform: scale(1.05);
         }
 
         .food-info {
@@ -257,6 +315,34 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: #333;
+            margin-bottom: 8px;
+        }
+
+        .food-price {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .recommendations {
+                padding: 100px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .floating-cakes {
+                background-size: 60px, 50px, 40px;
+            }
         }
 
         /* About Section */
@@ -302,171 +388,168 @@
             line-height: 1.8;
         }
 
-/* Menu Section */
-.menu {
-    padding: 80px 0;
-    background: #fff9f7;
-    position: relative;
-}
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+            background: #fff9f7;
+            position: relative;
+        }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.section-title {
-    text-align: center;
-    font-size: 2.2rem;
-    color: #333;
-    margin-bottom: 10px;
-}
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-.section-subtitle {
-    text-align: center;
-    color: #777;
-    font-size: 1rem;
-    margin-bottom: 40px;
-}
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
 
-/* Menu Grid */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-}
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
 
-/* Food Card */
-.food-card {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
+        /* Food Card */
+        .food-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
 
-.food-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
 
-.food-image {
-    height: 200px;
-    overflow: hidden;
-}
+        .food-image {
+            height: 200px;
+            overflow: hidden;
+        }
 
-.food-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
+        .food-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-.food-card:hover .food-photo {
-    transform: scale(1.05);
-}
+        .food-card:hover .food-photo {
+            transform: scale(1.05);
+        }
 
-.food-info {
-    padding: 20px;
-}
+        .food-info {
+            padding: 20px;
+        }
 
-.food-name {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 8px;
-}
+        .food-name {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
 
-.food-desc {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
+        .food-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
 
-.food-price {
-    color: #e74c3c;
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-}
+        .food-price {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
 
-/* WhatsApp Button */
-.whatsapp-btn {
-    display: block;
-    text-align: center;
-    background: #25D366;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            display: block;
+            text-align: center;
+            background: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-.whatsapp-btn:hover {
-    background: #25d36545;
-    transform: translateY(-2px);
-}
+        .whatsapp-btn:hover {
+            background: #25d36545;
+            transform: translateY(-2px);
+        }
 
-.whatsapp-btn i {
-    margin-right: 8px;
-}
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
 
-/* Responsive untuk mobile kecil */
-@media (max-width: 480px) {
-    .menu-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .food-image {
-        height: 160px;
-    }
-}
-
-/* Font Awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+        /* Responsive untuk mobile kecil */
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .food-image {
+                height: 160px;
+            }
+        }
 
         /* Style dasar footer */
-.footer {
-    background: #fff9f7;
-    padding: 30px 0;
-    font-family: Arial, sans-serif;
-}
+        .footer {
+            background: #fff9f7;
+            padding: 30px 0;
+            font-family: Arial, sans-serif;
+        }
 
-.footer .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
+        .footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-.footer-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #333;
-}
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
 
-/* Style link maps */
-.map-link {
-    display: inline-block;
-    margin-top: 10px;
-    color: #0066cc;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
+        /* Style link maps */
+        .map-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-.map-link:hover {
-    color: #004499;
-    text-decoration: underline;
-}
+        .map-link:hover {
+            color: #004499;
+            text-decoration: underline;
+        }
 
-/* Responsif di mobile */
-@media (max-width: 768px) {
-    .footer .container {
-        grid-template-columns: 1fr;
-    }
-}
+        /* Responsif di mobile */
+        @media (max-width: 768px) {
+            .footer .container {
+                grid-template-columns: 1fr;
+            }
+        }
 
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -603,519 +686,588 @@
 
     <!-- Recommendations Section -->
     <section class="recommendations" id="rekomendasi">
-        <div class="bg-icons">
-            <div class="bg-icon" style="top: 10%; left: 5%;">🍰</div>
-            <div class="bg-icon" style="top: 20%; right: 10%;">🧁</div>
-            <div class="bg-icon" style="bottom: 30%; left: 15%;">🍞</div>
-            <div class="bg-icon" style="bottom: 10%; right: 20%;">🥐</div>
-            <div class="bg-icon" style="top: 50%; left: 8%;">🍪</div>
-            <div class="bg-icon" style="top: 70%; right: 5%;">🎂</div>
-        </div>
+    <!-- Floating food emojis -->
+        <div class="floating-emojis">
+            <span class="floating-emoji" style="top:15%; left:10%; animation-delay:0s;">🍰</span>
+            <span class="floating-emoji" style="top:20%; left:15%; animation-delay:1s;">🧁</span>
+            <span class="floating-emoji" style="top:70%; left:50%; animation-delay:2s;">🍩</span>
+            <span class="floating-emoji" style="top:15%; left:90%; animation-delay:3s;">🍪</span>
+            <span class="floating-emoji" style="top:20%; left:85%; animation-delay:4s;">🥮</span>
+        </div>    
         <div class="container">
-            <h2 class="section-title">Rekomendasi</h2>
+            <h2 class="section-title">Rekomendasi Kami</h2>
+            
             <div class="food-grid">
+                <!-- Item 1 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <div class="bread-visual"></div>
+                        <img src="images/brownies.jpg" alt="Brownies" class="food-photo">
                     </div>
                     <div class="food-info">
-                        <h3 class="food-name">Roti</h3>
+                        <h3 class="food-name">Brownies</h3>
+                        <p class="food-price">Rp 3.500/pcs</p>
                     </div>
                 </div>
+                
+                <!-- Item 2 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <div class="bread-visual"></div>
+                        <img src="images/kuekubuah.jpg" alt="Kue Ku Buah" class="food-photo">
                     </div>
                     <div class="food-info">
-                        <h3 class="food-name">Roti</h3>
+                        <h3 class="food-name">Kue Ku Buah</h3>
+                        <p class="food-price">Rp 1.750/pcs</p>
                     </div>
                 </div>
+                
+                <!-- Item 3 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <div class="bread-visual"></div>
+                        <img src="images/bolenpisang.jpg" alt="Bolen Pisang" class="food-photo">
                     </div>
                     <div class="food-info">
-                        <h3 class="food-name">Roti</h3>
+                        <h3 class="food-name">Bolen Pisang</h3>
+                        <p class="food-price">Rp 4.000/pcs</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- Menu Section -->
-<section class="menu" id="menu">
-    <div class="container">
-        <h2 class="section-title">Menu Kami</h2>
-        <p class="section-subtitle">Pilihan terbaik dengan bahan premium</p>
-        
-        <div class="menu-grid">
-            <!-- Item 1 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/aremarem.jpg" alt="aremarem" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Arem-Arem</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Arem-Arem" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">Menu Kami</h2>
+            <p class="section-subtitle">Pilihan terbaik dengan bahan premium</p>
             
-            <!-- Item 2 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/piebrownies.jpeg" alt="piebrownies" class="food-photo">
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/aremarem.jpg" alt="aremarem" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Arem-Arem</h3>
+                        <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Arem-Arem" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pie Brownies</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Brownies" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 2 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/piebrownies.jpg" alt="piebrownies" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Pie Brownies</h3>
+                        <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Brownies" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 3 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/soesragout.jpg" alt="soesragout" class="food-photo">
+                
+                <!-- Item 3 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/soesragout.jpg" alt="soesragout" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Soes Ragout</h3>
+                        <p class="food-desc">Kulit soes renyah dengan isian ragout lezat</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Soes%20Ragout" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Soes Ragout</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Soes%20Ragout" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 4 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/pastrykacang.jpg" alt="pastrykacang" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Pastry Kacang</h3>
+                        <p class="food-desc">Pastry renyah dengan taburan kacang</p>
+                        <p class="food-price">Rp 4.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastry%20Kacang" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 4 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/pastrykacang.jpg" alt="pastrykacang" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pastry Kacang</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 4.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastry%20Kacang" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 5 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/kuenonamanis.jpg" alt="kuenonamanis" class="food-photo">
+                <!-- Item 5 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/kuenonamanis.jpg" alt="kuenonamanis" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Kue Nona Manis</h3>
+                        <p class="food-desc">Kue lembut dengan taburan gula halus</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kue%20Ku%20Buah" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Kue Nona Manis</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kue%20Ku%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 6 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/ongolongol.jpg" alt="ongolongol" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Ongol-Ongol</h3>
+                        <p class="food-desc">Kue kenyal rasa pandan dengan taburan kelapa</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Ongol-ongol" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 6 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/ongolongol.jpg" alt="ongolongol" class="food-photo">
+                
+                <!-- Item 7 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/lapisbunga.jpg" alt="lapisbunga" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Lapis Bunga</h3>
+                        <p class="food-desc">Kue lapis dengan pola bunga nan canti</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lapis%20Bunga" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Ongol-Ongol</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Ongol-ongol" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 8 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/kuekubuah.jpg" alt="kuekubuah" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Kue Ku Buah</h3>
+                        <p class="food-desc">Kua kenyal dengan bentuk buah yang menarik</p>
+                        <p class="food-price">Rp 1.750/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastry%20Kacang" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 7 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/lapisbunga.jpg" alt="lapisbunga" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Lapis Bunga</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lapis%20Bunga" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 8 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/kuekubuah.jpg" alt="kuekubuah" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Kue Ku Buah</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 1.750/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastry%20Kacang" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 9 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/bolukukusmekrok.jpg" alt="bolukukusmekrok" class="food-photo">
+                <!-- Item 9 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/bolukukusmekrok.jpg" alt="bolukukusmekrok" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Bolu Kukus Mekrok</h3>
+                        <p class="food-desc">Bolu lembut, manis, dan berbentuk "mekrok"</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Bolu%20Kukus%20Mekrok" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Bolu Kukus Mekrok</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Bolu%20Kukus%20Mekrok" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 10 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/soesburger.jpg" alt="soesburger" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Soes Burger</h3>
+                        <p class="food-desc">Kreasi soes unik dengan isian ala burger</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Soes%20Burger" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 10 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/pastelragout.jpg" alt="pastelragout" class="food-photo">
+                
+                <!-- Item 11 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/kueku.jpg" alt="kueku" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Kue Ku</h3>
+                        <p class="food-desc">Kue tradisional kenyal dengan isian kacang</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kue%20Ku" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pastel Ragout</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastel%20Ragout" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 12 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/semarmendem.jpg" alt="semarmendem" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Semar Mendem</h3>
+                        <p class="food-desc">Nasi dengan guluang telur dadar yang gurih</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Semar%20Menderm" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 11 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/piebuah.jpg" alt="piebuah" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pie Buah</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 12 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/donatburger.jpg" alt="donatburger" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Donat Burger</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Donat%20Burger" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 13 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/coffemocca.jpg" alt="coffemocca" class="food-photo">
+                <!-- Item 13 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/coffemocca.jpg" alt="coffemocca" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Coffe Mocca Bread</h3>
+                        <p class="food-desc">Kue lembut, cocok untuk pecinta kopi</p>
+                        <p class="food-price">Rp 4.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Coffee%20Mocca%20Bread" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Coffe Mocca Bread</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 4.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Coffee%20Mocca%20Bread" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 14 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/rainbowroll.jpg" alt="rainbowroll" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Rainbow Roll</h3>
+                        <p class="food-desc">Roti gulung warna-warna dengan krim manis</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Rainbow%20Roll" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 14 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/rainbowroll.jpg" alt="rainbowroll" class="food-photo">
+                
+                <!-- Item 15 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/donatbuah.jpg" alt="donatbuah" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Donat Buah</h3>
+                        <p class="food-desc">Donat lembut dengan toping gula dan buah</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Donat%20Buah" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Rainbow Roll</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Rainbow%20Roll" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 16 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/garlicbread.jpg" alt="garlicbread" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Garlic Bread</h3>
+                        <p class="food-desc">Roti bawang putih yang gurih dan lembut</p>
+                        <p class="food-price">Rp 10.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Garlic%20Bread" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 15 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/donatbuah.jpg" alt="donatbuah" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Donat Buah</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Donat%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 16 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/garlicbread.jpg" alt="garlicbread" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Garlic Bread</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 10.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Garlic%20Bread" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 17 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/pastelragout.jpg" alt="pastelragout" class="food-photo">
+                <!-- Item 17 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/pastelragout.jpg" alt="pastelragout" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Pastel Ragout</h3>
+                        <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastel%20Ragout" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pastel Ragout</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pastel%20Ragout" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 18 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/piebuah.jpg" alt="piebuah" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Pie Buah</h3>
+                        <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Buah" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 18 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/piebuah.jpg" alt="piebuah" class="food-photo">
+                
+                <!-- Item 19 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/donatburger.jpg" alt="donatburger" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Donat Burger</h3>
+                        <p class="food-desc">Pastry renyah dengan taburan kacang</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Donat%20Burger" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Pie Buah</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Pie%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 19 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/donatburger.jpg" alt="donatburger" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Donat Burger</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Donat%20Burger" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 20 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/rotiburger.jpg" alt="rotiburger" class="food-photo">
+                <!-- Item 20 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/rotiburger.jpg" alt="rotiburger" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Roti Burger</h3>
+                        <p class="food-desc">Roti empuk ala burger yang unik dan nikmat</p>
+                        <p class="food-price">Rp 4.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Roti%20Burger" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Roti Burger</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 4.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Roti%20Burger" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 21 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/kroketkentang.jpg" alt="kroketkentang" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Kroket Kentang</h3>
+                        <p class="food-desc">Gorengan kentang dengan isian yang gurih</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kroket%20Kentang" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 21 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/kroketkentang.jpg" alt="kroketkentang" class="food-photo">
+                
+                <!-- Item 22 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/lemper.jpg" alt="lemper" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Lemper Ayam</h3>
+                        <p class="food-desc">Nasi ketan pulen dengan isian ayam bumbu</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lemper%20Ayam" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Kroket Kentang</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kroket%20Kentang" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 23 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/brownies.jpg" alt="brownies" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Brownies</h3>
+                        <p class="food-desc">Kue coklat crunchy yang padat dan manis</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Brownies" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 22 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/lemper.jpg" alt="lemper" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Lemper Ayam</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lemper%20Ayam" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 23 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/brownies.jpg" alt="brownies" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Brownies</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Brownies" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 24 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/pudingbuah.jpeg" alt="pudingbuah" class="food-photo">
+                <!-- Item 24 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/pudingbuah.jpeg" alt="pudingbuah" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Puding Buah</h3>
+                        <p class="food-desc">Puding segar dengan potongan buah segar</p>
+                        <p class="food-price">Rp 5.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Puding%20Buah" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Puding Buah</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 5.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Puding%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 25 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/dadargulungmawar.jpg" alt="dadargulungmawar" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Dadar Gulung Mawar</h3>
+                        <p class="food-desc">Kreasi dadar gulung dengan bentuk mawar cantik</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Dadar%20Gulung%20Mawar" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 25 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/dadargulungmawar.jpg" alt="dadargulungmawar" class="food-photo">
+                
+                <!-- Item 26 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/soesbuah.jpeg" alt="soesbuah" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Soes Buah</h3>
+                        <p class="food-desc">Kue soes renyah yang creamy dengan topping buah segar</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Soes%20Buah" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Dadar Gulung Mawar</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Dadar%20Gulung%20Mawar" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 26 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/soesbuah.jpeg" alt="soesbuah" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Soes Buah</h3>
-                    <p class="food-desc">Pastry renyah dengan taburan kacang</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Soes%20Buah" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 27 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/lumpursurga.jpg" alt="lumpursurga" class="food-photo">
+                <!-- Item 27 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/lumpursurga.jpg" alt="lumpursurga" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Lumpur Surga</h3>
+                        <p class="food-desc">Kue lumpur creamy rasa surgawi</p>
+                        <p class="food-price">Rp 4.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lumpur%20Surga" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Lumpur Surga</h3>
-                    <p class="food-desc">Nasi isi ayam dengan bumbu spesial</p>
-                    <p class="food-price">Rp 4.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lumpur%20Surga" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 28 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/kuetalamgurih.jpeg" alt="kuetalamgurih" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Kue Talam Gurih</h3>
+                        <p class="food-desc">Kue tradisional gurih dengan rempah khas</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kue%20Talam%20Gurih" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 28 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/kuetalamgurih.jpeg" alt="kuetalamgurih" class="food-photo">
+                
+                <!-- Item 29 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/apemselong.jpeg" alt="apemselong" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Apem Selong</h3>
+                        <p class="food-desc">Apem kukus legit dengan aroma pandan</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Apem%20Selong" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Kue Talam Gurih</h3>
-                    <p class="food-desc">Perpaduan pie renyah dan brownies lembut</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Kue%20Talam%20Gurih" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+                
+                <!-- Item 30 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/bananaroll.jpeg" alt="bananaroll" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Banana Roll</h3>
+                        <p class="food-desc">Pisnang gulung renyah dan manis alami</p>
+                        <p class="food-price">Rp 3.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Banana%20Roll" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Item 29 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/apemselong.jpeg" alt="apemselong" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Apem Selong</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.000/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Apem%20Selong" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Item 30 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/bananaroll.jpeg" alt="bananaroll" class="food-photo">
-                </div>
-                <div class="food-info">
-                    <h3 class="food-name">Banana Roll</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 3.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Banana%20Roll" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
-                </div>
-            </div>
 
-            <!-- Item 31 -->
-            <div class="food-card">
-                <div class="food-image">
-                    <img src="images/donatragout.jpeg" alt="donatragout" class="food-photo">
+                <!-- Item 31 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/donatragout.jpeg" alt="donatragout" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Donat Ragout</h3>
+                        <p class="food-desc">Donat lembut dengan topping ragout gurih</p>
+                        <p class="food-price">Rp 2.500/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Banana%20Roll" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div class="food-info">
-                    <h3 class="food-name">Donat Ragout</h3>
-                    <p class="food-desc">Kulit soes renyah dengan isian ragout spesial</p>
-                    <p class="food-price">Rp 2.500/pcs</p>
-                    <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Banana%20Roll" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
-                    </a>
+
+                <!-- Item 32 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/hotdog.jpg" alt="hotdog" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Hot Dog</h3>
+                        <p class="food-desc">Roti lembut dengan isian sosis dan saos yang nikmat</p>
+                        <p class="food-price">Rp 5.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Hotdog" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Item 33 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/lumpurkentang.jpeg" alt="lumpurkentang" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Lumpur Kentang</h3>
+                        <p class="food-desc">Kue lumpur berbahan kentang yang lembut</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Lumpur%20Kentang" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Item 34 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/sosissolo.jpg" alt="sosissolo" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Sosis Solo</h3>
+                        <p class="food-desc">Kulit lumpia dengan isian ayam yang lezat</p>
+                        <p class="food-price">Rp 3.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Banana%20Roll" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 35 -->
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="images/bolenpisang.jpeg" alt="bolenpisang" class="food-photo">
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">Bolen Pisang</h3>
+                        <p class="food-desc">Pastry renyah berisi pisang manis yang lumer</p>
+                        <p class="food-price">Rp 4.000/pcs</p>
+                        <a href="https://wa.me/6281332494673?text=Saya%20mau%20pesan%20Bolen%20Pisang" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- About Section -->
     <section class="about" id="about">
