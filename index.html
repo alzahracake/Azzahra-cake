@@ -38,10 +38,24 @@
             padding: 0 20px;
         }
 
-        .brand-title {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+        .brand-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Sesuaikan dengan kebutuhan */
+        }
+
+        .logo-image {
+            max-height: 60px; /* Sesuaikan ukuran logo */
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Untuk responsif di mobile */
+        @media (max-width: 768px) {
+            .logo-image {
+                max-height: 50px;
+            }
         }
 
         /* Added navigation styles */
@@ -226,7 +240,16 @@
             opacity: 0.1;
             animation: float 15s infinite ease-in-out;
         }
+        
+        /*untuk link card */
+        .food-card-link {
+            text-decoration: none;
+        }
 
+        /* Hilangkan garis bawah saat hover */
+        .food-card-link:hover {
+            text-decoration: none;
+        }
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -236,6 +259,7 @@
             }
         }
 
+        /* Menu Section */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -442,11 +466,22 @@
 
         /* Style dasar footer */
         .footer {
-            background: #f5d6aa;
+            background: #373434;
             padding: 50px 0;
-            font-family: Arial, sans-serif;
+            color: white;
+            font-family: 'poppins', sans-serif;
         }
 
+        .footer-section a[href^="tel:"] {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a[href^="tel:"]:hover {
+            color: #f0f0f0; /* Sedikit lebih gelap saat hover */
+            text-decoration: underline;
+        }
         .footer .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -456,21 +491,21 @@
         .footer-title {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: #333;
+            color: white;
         }
 
         /* Style link maps */
         .map-link {
             display: inline-block;
             margin-top: 10px;
-            color: #0066cc;
+            color: whitesmoke;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
         }
 
         .map-link:hover {
-            color: #004499;
+            color: whitesmoke;
             text-decoration: underline;
         }
 
@@ -581,8 +616,9 @@
     <header class="header">
         <div class="header-content">
             <nav class="header-nav">
-                <!-- Brand yang sudah ada -->
-                <h1 class="brand-title">AL ZAHRA</h1>
+                <div class="brand-logo">
+                    <img src="images/logo.png" alt="AL ZAHRA" class="logo-image">
+                </div>
                 
                 <!-- Daftar navigasi baru -->
                 <ul class="nav-links">
@@ -628,39 +664,44 @@
             <h2 class="section-title">Rekomendasi Kami</h2>
             
             <div class="food-grid">
-                <!-- Item 1 -->
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/brownies.jpg" alt="Brownies" class="food-photo">
+                <!-- Item 1 - Brownies -->
+                <a href="#brownies" class="food-card-link">
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/brownies.jpg" alt="Brownies" class="food-photo">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">Brownies</h3>
+                            <p class="food-price">Rp 3.500/pcs</p>
+                        </div>
                     </div>
-                    <div class="food-info">
-                        <h3 class="food-name">Brownies</h3>
-                        <p class="food-price">Rp 3.500/pcs</p>
-                    </div>
-                </div>
+                </a>
                 
-                <!-- Item 2 -->
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/kuekubuah.jpg" alt="Kue Ku Buah" class="food-photo">
+                <!-- Item 2 - Kue Ku Buah -->
+                <a href="#kuekubuah" class="food-card-link">
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/kuekubuah.jpg" alt="Kue Ku Buah" class="food-photo">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">Kue Ku Buah</h3>
+                            <p class="food-price">Rp 1.750/pcs</p>
+                        </div>
                     </div>
-                    <div class="food-info">
-                        <h3 class="food-name">Kue Ku Buah</h3>
-                        <p class="food-price">Rp 1.750/pcs</p>
-                    </div>
-                </div>
+                </a>
                 
-                <!-- Item 3 -->
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/bolenpisang.jpg" alt="Bolen Pisang" class="food-photo">
+                <!-- Item 3 - Bolen Pisang -->
+                <a href="#bolenpisang" class="food-card-link">
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/bolenpisang.jpg" alt="Bolen Pisang" class="food-photo">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">Bolen Pisang</h3>
+                            <p class="food-price">Rp 4.000/pcs</p>
+                        </div>
                     </div>
-                    <div class="food-info">
-                        <h3 class="food-name">Bolen Pisang</h3>
-                        <p class="food-price">Rp 4.000/pcs</p>
-                    </div>
-                </div>
-            </div>
+                </a>
         </div>
     </section>
 
@@ -777,7 +818,7 @@
                 <!-- Item 8 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <img src="images/kuekubuah.jpg" alt="kuekubuah" class="food-photo">
+                        <img src="images/kuekubuah.jpg" id="kuekubuah" alt="kuekubuah" class="food-photo">
                     </div>
                     <div class="food-info">
                         <h3 class="food-name">Kue Ku Buah</h3>
@@ -1002,7 +1043,7 @@
                 <!-- Item 23 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <img src="images/brownies.jpg" alt="brownies" class="food-photo">
+                        <img src="images/brownies.jpg" id="brownies" alt="brownies" class="food-photo">
                     </div>
                     <div class="food-info">
                         <h3 class="food-name">Brownies</h3>
@@ -1182,7 +1223,7 @@
                 <!-- Item 35 -->
                 <div class="food-card">
                     <div class="food-image">
-                        <img src="images/bolenpisang.jpeg" alt="bolenpisang" class="food-photo">
+                        <img src="images/bolenpisang.jpeg" id="bolenpisang" alt="bolenpisang" class="food-photo">
                     </div>
                     <div class="food-info">
                         <h3 class="food-name">Bolen Pisang</h3>
@@ -1199,16 +1240,6 @@
 
     <footer class="footer" id="about">
         <div class="container">
-            <!-- Media Sosial -->
-            <div class="footer-section social-media">
-                <h3 class="footer-title">Ikuti Kami</h3>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">IG</a>
-                    <a href="#" class="social-icon">TT</a>
-                    <a href="#" class="social-icon">FB</a>
-                    <a href="#" class="social-icon">WA</a>
-                </div>
-            </div>
 
             <!-- Alamat 1 + Link Google Maps -->
             <div class="footer-section">
@@ -1218,7 +1249,7 @@
                 <p>🕒 Buka: Senin-Minggu (09.00-17.00)</p>
                 <!-- Link Teks ke Google Maps -->
                 <a 
-                    href="https://maps.google.com/?q=Jl.+Contoh+No.+123,+Jakarta" 
+                    href="https://maps.app.goo.gl/vR5c6nYVMuqBwLkdA" 
                     target="_blank" 
                     class="map-link"
                 >
@@ -1231,10 +1262,10 @@
                 <h3 class="footer-title">Cabang Kami</h3>
                 <p>Dungus RT 17 Sukodono, Sidoarjo, Jawa Timur</p>
                 <p>📞 <a href="tel:+6281332494673">0813-3249-4673</a></p>
-                <p>🕒 Buka: Senin-Jumat (10.00-18.00)</p>
+                <p>🕒 Buka: Senin-Minggu (10.00-18.00)</p>
                 <!-- Link Teks ke Google Maps -->
                 <a 
-                    href="https://maps.google.com/?q=Jl.+Cabang+No.+456,+Bandung" 
+                    href="https://maps.app.goo.gl/i2uGibnDGj3m165t6" 
                     target="_blank" 
                     class="map-link"
                 >
